@@ -1,0 +1,24 @@
+@media (min-width: 417px) and (max-width: 1024px) {
+    body {
+        display: block;
+    }
+
+    footer {
+        margin-top: 50px;
+    }
+
+    .pais {
+        text-align: center;
+    }
+
+    .footer__ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .footer__ul div:first-child {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
