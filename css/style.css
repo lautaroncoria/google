@@ -1,3 +1,10 @@
+/* 
+    Divido el body en tres secciones (header, main y footer) y 
+    con flex los coloco uno debajo del otro. Es importante darle
+    una altura al body porque sino ocupa sólo el alto de su contenido
+    y en este caso el contenido no llega a ocupar todo el alto del viewport
+    y entonces sin el height, el footer queda a mitad de la pantalla más o menos.
+*/
 body {
     display: flex;
     flex-direction: column;
@@ -8,26 +15,39 @@ body {
     color: #5f6368;
 }
 
+/* 
+    Reseteo los estilos por defecto de los enlaces.
+*/
 a {
     text-decoration: none;
     color: inherit;
 }
 
+/* 
+    Al subrayado de los enlaces fue quitado y sólo aparecen
+    cuando el usuario se posiciona encima.
+*/
 a:hover {
     text-decoration: underline;
 }
 
-.encabezado {
-    overflow: hidden;
-}
+/*
+    Al .menu (etiqueta nav) le doy un flex para que su hijo .menu__ul
+    (etiqueta ul) pueda acomodarse hacia la derecha.
 
+*/
 .menu {
     display: flex;
     justify-content: flex-end;
     margin: 5px;
-    overflow: hidden;
 }
 
+/*
+    Al .menu__ul (etiqueta ul) también le pongo flex para
+    poder alinear a sus hijos y darles una separación.
+    Y con el "list-style: none" le quito las viñetas que tienen
+    por defecto.
+*/
 .menu__ul {
     display: flex;
     align-items: center;
@@ -37,10 +57,11 @@ a:hover {
     list-style: none;
 }
 
+/*
+    Estilos para la imagen de los 9 puntitos que dirige a la página
+    "Apps de Google"
+*/
 .menu__item--puntos {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 8px;
     border-radius: 25px;
 }
@@ -50,6 +71,9 @@ a:hover {
     cursor: pointer;
 }
 
+/*
+    Estilos para el obtón "Acceder"
+*/
 .menu__item--acceder {
     padding: 9px 23px;
     background-color: #1a73e8;
@@ -62,35 +86,63 @@ a:hover {
     cursor: pointer;
 }
 
+/*
+    Estilos para el enlace que envuelve al botón "Acceder".
+    Más arriba en el código le había dado estilos a todos los
+    enlaces pero a este en particular quiero que se muestre de
+    otra forma porque es un botón, así que reescribo los estilos
+    para este elemento.
+*/
 .menu__link,
 .menu__link:hover {
     text-decoration: none;
 }
 
+/*
+    Como el body tiene un display:flex, entonces hago que el main ocupe
+    el espacio sobrante y no sólo el espacio de su contenido, 
+    así el footer se ubica más abajo en el lugar correcto.
+*/
 main {
     flex-grow: 1;
-    /* min-height: 503.5px; */
-    overflow: hidden;
 }
 
+/*
+    Este elemento es el único hijo directo de main y contiene 3 elementos: 
+    al logo, la barra de búsqueda y los botones de búsqueda.
+    Con flex los pongo en columna y les doy una separación.
+    Usé margín-top porque realmente no quería centrarlo, sino ubicarlo
+    un poco más arriba tal como aparece en la página oficial de Google.
+*/
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 35px;
-    margin: 5px;
     margin-top: 110px;
 }
 
+/* 
+    Con esta propiedad la imagen no se pone en un 100%.
+    Si no estuviera, la imagen se agrandaría porque por defecto
+    gracias al flex, se agranda para intentar ocupar todo el
+    espacio disponible.
+ */
 .logo {
-    width: fit-content; /* Con esta propiedad la imagen no se pone en un 100% */
+    width: fit-content; 
 }
 
+/*
+    Elemento <form> que contiene a 3 inputs:
+    1 input:search y 2 inputs:image. 
+    Se utiliza flex para ubicarlas de manera horizontal y espaciadas.
+*/
 .buscador {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 559px;
+    max-width: 70%;
     height: 44px;
     border-radius: 22px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
@@ -102,12 +154,20 @@ main {
     padding: 0 10px 0 15px;
 }
 
+/*
+    Al formulario (.buscador) le di un ancho definido para que
+    este input buscador luego tome el espacio sobrante con flex-grow.
+*/
 .input-search {
     flex-grow: 1;
     border: none;
     font-size: 1rem;
 }
 
+/*
+    Cuando uno se posiciona sobre el input search tiene por defecto
+    un borde negro que no debería estar. Para solucionarlo lo quito.
+*/
 .input-search:focus {
     outline: none;
 }
@@ -117,11 +177,19 @@ main {
     padding: 0 20px 0 10px;
 }
 
+/*
+    Contenedor de los botones "Buscar en Google" y "Me siento con suerte".
+    Uso flex para darles un espaciado de 15px.
+*/
 .cont-buttons {
     display: flex;
     gap: 15px;
 }
 
+
+/*
+    Estilos para ambos botones "Buscar en Google" y "Me siento con suerte"
+*/
 .button {
     padding: 10px 16px;
     font-size: 14px;
@@ -137,18 +205,35 @@ main {
     cursor: pointer;
 }
 
+/*
+    Dividí el footer en dos divs, uno contiene al texto "Argentina"
+    y el otro contiene los enlaces de Política y demás...
+    Con flex los coloco uno debajo del otro, en filas.
+*/
 footer {
     display: flex;
     flex-direction: column;
     background-color: #f2f2f2;
 }
 
+/*
+    El primero hijo <div> del footer es .pais
+*/
 .pais {
     padding: 0 30px;
     font-size: 15px;
     border-bottom: 1px solid #e2e2e2;
 }
 
+/*
+    El segundo hijo <div> contiene un <nav> que a su vez contiene a este elemento
+    footer__ul (que es una etiqueta ul). 
+    la etiqueta <ul> tiene 7 elementos hijos de tipo <li>
+    pero 4 de ellos tienen que ubicarse a la izquierda y los otros
+    3 a la derecha. Para solucionarlo encerré cada bloque en un <div> 
+    para luego usar flex y ubicarlos en las esquinas. Quito las viñetas
+    por defecto y agrego un espaciado.
+*/
 .footer__ul {
     display: flex;
     justify-content: space-between;
@@ -158,8 +243,10 @@ footer {
     list-style: none;
 }
 
-.footer__ul div:first-child,
-.footer__ul div:last-child {
+/*
+    Esta etiqueta padre orden a los elementos <li>
+*/
+.footer__ul div {
     display: flex;
     gap: 30px;
 }
